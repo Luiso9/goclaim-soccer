@@ -1,12 +1,25 @@
 package main
 
 import (
+	"log"
+	"os"
+	
 	// "github.com/Luiso9/goclaim-soccer/internal/api"
-	"github.com/Luiso9/goclaim-soccer/internal/scheduler"
 	// "github.com/Luiso9/goclaim-soccer/internal/webhook"
+	"github.com/Luiso9/goclaim-soccer/internal/scheduler"
+	"github.com/joho/godotenv"
 )
 
+func init() {
+	err := godotenv.Load() // defaults to .env in root
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+}
+
 func main() {
+	// Commented code used to debug the discord webhook :D
+
 	// mock := &api.ClaimResponse{
 	// 	Card: struct {
 	// 		FullName string `json:"full_name"`
@@ -22,6 +35,8 @@ func main() {
 	// 		Bin:      666666,
 	// 	},
 	// }
+
+	log.Println("AUTH_KEY =", os.Getenv("AUTH_KEY"))
 
 	// webhook.Notify(mock)
 	scheduler.DoHourlyJob()

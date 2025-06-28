@@ -17,7 +17,7 @@ func DoHourlyJob() {
 }
 
 func run() {
-	for _, req := range api.OptionRequest {
+	for _, req := range api.OptionRequest() {
 		result, err := api.SendRequest(req)
 
 		if err != nil {
