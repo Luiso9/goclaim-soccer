@@ -31,7 +31,7 @@ func run() {
 			continue
 		}
 
-		webhook.Notify(result)
+		webhook.SendNotify(result)
 		log.Printf("Claimed: %s (%s) BIN: %d", result.Card.FullName, result.Card.Position, result.Card.Bin)
 	}
 }
