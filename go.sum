@@ -1,3 +1,5 @@
+github.com/andybalholm/brotli v1.2.0 h1:ukwgCxwYrmACq68yiUqwIWnGY0cTPox/M94sVwToPjQ=
+github.com/andybalholm/brotli v1.2.0/go.mod h1:rzTDkvFWvIrjDXZHkuS16NPggd91W3kUSvPlQ1pLaKY=
 github.com/bensch777/discord-webhook-golang v0.0.6 h1:91BMU6vKgymAMfRwtXPMUrKX+SUoPPHTDJHTFA/1Kgk=
 github.com/bensch777/discord-webhook-golang v0.0.6/go.mod h1:GcIorMZAZaHZyQJkjNoYKvZ6VpZo8XLib/eD51xN7Is=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=

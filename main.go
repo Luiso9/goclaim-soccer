@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"os"
 	
 	// "github.com/Luiso9/goclaim-soccer/internal/api"
 	// "github.com/Luiso9/goclaim-soccer/internal/webhook"
@@ -35,8 +34,6 @@ func main() {
 	// 		Bin:      666666,
 	// 	},
 	// }
-
-	log.Println("AUTH_KEY =", os.Getenv("AUTH_KEY"))
 
 	// webhook.Notify(mock)
 	scheduler.DoHourlyJob()
