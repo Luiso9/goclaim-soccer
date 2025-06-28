@@ -13,7 +13,7 @@ Automatically claim SoccerGuru's Card.
 ### Steps
  1. **Clone the Repository**
 ```bash
-git clone
+git clone https://github.com/Luiso9/goclaim-soccer.git
 cd goclaim-soccer
 ```
  2. **Initialize Go module**
