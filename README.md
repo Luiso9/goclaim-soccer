@@ -27,8 +27,8 @@ go mod tidy
 ```
 
  4. **Create a .env file with value**
-```env
-AUTH_KEY=bearer token
+```bash
+echo 'AUTH_KEY=your_token_value' > .env
 ```
 
  5. **Change Discord Webhook URL in `internal/webhook/webhook.go`**
