@@ -6,7 +6,7 @@ Automatically claim SoccerGuru's Card.
 
 ### Prerequisites
 
-- Go (version 1.21 or higher)
+- Go (version 1.24 or higher)
 - Git
 - Discord (with Rich Presence enabled)
 
@@ -18,7 +18,7 @@ cd goclaim-soccer
 ```
  2. **Initialize Go module**
 ```bash
-go mod init github.**com/Luiso9/goclaim-soccer**
+go mod init github.com/Luiso9/goclaim-soccer
 ```
 
  3. **Download Dependencies**
@@ -27,8 +27,8 @@ go mod tidy
 ```
 
  4. **Create a .env file with value**
-```env
-AUTH_KEY=bearer token
+```bash
+echo 'AUTH_KEY=your_token_value' > .env
 ```
 
  5. **Change Discord Webhook URL in `internal/webhook/webhook.go`**
