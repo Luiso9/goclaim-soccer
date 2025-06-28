@@ -6,7 +6,7 @@ Automatically claim SoccerGuru's Card.
 
 ### Prerequisites
 
-- Go (version 1.21 or higher)
+- Go (version 1.24 or higher)
 - Git
 - Discord (with Rich Presence enabled)
 
@@ -18,7 +18,7 @@ cd goclaim-soccer
 ```
  2. **Initialize Go module**
 ```bash
-go mod init github.**com/Luiso9/goclaim-soccer**
+go mod init github.com/Luiso9/goclaim-soccer
 ```
 
  3. **Download Dependencies**
