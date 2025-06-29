@@ -1,6 +1,9 @@
 # GoClaim Soccer
 Automatically claim SoccerGuru's Card.
 
+![image](https://github.com/user-attachments/assets/72dc7970-7db7-4d4e-8169-50f4c6a64cf9)
+
+
 ---
 ## Build Steps
 
