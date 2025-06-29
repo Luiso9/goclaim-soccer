@@ -20,14 +20,14 @@ func run() {
 	for _, req := range api.OptionRequest() {
 		result, err := api.SendRequest(req)
 
-		if err != nil {
-			log.Println("API request failed :", err)
-			continue
-		}
-
 		// Skipping response from OPTIONS request.
 		if req.Method == "OPTIONS" {
 			log.Println("Empty")
+			continue
+		}
+
+		if err != nil {
+			log.Println("API request failed :", err)
 			continue
 		}
 

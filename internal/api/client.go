@@ -12,25 +12,26 @@ import (
 )
 
 type ClaimResponse struct {
-    Card struct {
-        FutwizID     int    `json:"futwiz_id"`
-        FullName     string `json:"full_name"`
-        CardName     string `json:"card_name"`
-        Nationality  string `json:"nationality"`
-        TeamName     string `json:"team_name"`
-        Rating       int    `json:"rating"`
-        CardType     string `json:"card_type"`
-        Position     string `json:"position"`
-        League       string `json:"league"`
-        Pace         int    `json:"pace"`
-        Shooting     int    `json:"shooting"`
-        Passing      int    `json:"passing"`
-        Dribbling    int    `json:"dribbling"`
-        Defending    int    `json:"defending"`
-        Physicality  int    `json:"physicality"`
-        Value        int    `json:"value"`
-        Bin          int    `json:"bin"`
-    } `json:"card"`
+	Card struct {
+		FutwizID    int    `json:"futwiz_id"`
+		FullName    string `json:"full_name"`
+		CardName    string `json:"card_name"`
+		Nationality string `json:"nationality"`
+		TeamName    string `json:"team_name"`
+		Rating      int    `json:"rating"`
+		CardType    string `json:"card_type"`
+		Position    string `json:"position"`
+		League      string `json:"league"`
+		Pace        int    `json:"pace"`
+		Shooting    int    `json:"shooting"`
+		Passing     int    `json:"passing"`
+		Dribbling   int    `json:"dribbling"`
+		Defending   int    `json:"defending"`
+		Physicality int    `json:"physicality"`
+		Value       int    `json:"value"`
+		Bin         int    `json:"bin"`
+		Uuid        string `json:"uuid"`
+	} `json:"card"`
 }
 
 var httpClient = &http.Client{
@@ -63,18 +64,18 @@ func SendRequest(reqDef apiRequest) (*ClaimResponse, error) {
 	defer res.Body.Close()
 
 	var reader io.ReadCloser
-    switch res.Header.Get("Content-Encoding") {
-    case "gzip":
-        reader, err = gzip.NewReader(res.Body)
-        if err != nil {
-            return nil, err
-        }
-        defer reader.Close()
-    case "br":
-        reader = io.NopCloser(brotli.NewReader(res.Body))
-    default:
-        reader = res.Body
-    }
+	switch res.Header.Get("Content-Encoding") {
+	case "gzip":
+		reader, err = gzip.NewReader(res.Body)
+		if err != nil {
+			return nil, err
+		}
+		defer reader.Close()
+	case "br":
+		reader = io.NopCloser(brotli.NewReader(res.Body))
+	default:
+		reader = res.Body
+	}
 
 	var result ClaimResponse
 	if err := json.NewDecoder(reader).Decode(&result); err != nil {

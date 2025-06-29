@@ -20,6 +20,9 @@ func Notify(result *api.ClaimResponse) {
 		Title:     "Claim Success",
 		Color:     5763719,
 		Timestamp: time.Now(),
+		Thumbnail: discordwebhook.Thumbnail{
+			Url: "https://mirrorcdn.soccerguru.live/cards/master/" + card.Uuid,
+		},
 		Fields: []discordwebhook.Field{
 			discordwebhook.Field{
 				Name:   "Name",
