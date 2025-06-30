@@ -11,6 +11,11 @@ import (
 	"github.com/andybalholm/brotli"
 )
 
+type DailyResponse struct {
+	Streak       int `json:"streak"`
+	IsPackReward bool   `json:"is_pack_reward"`
+}
+
 type ClaimResponse struct {
 	Card struct {
 		FutwizID    int    `json:"futwiz_id"`
@@ -78,6 +83,44 @@ func SendRequest(reqDef apiRequest) (*ClaimResponse, error) {
 	}
 
 	var result ClaimResponse
+	if err := json.NewDecoder(reader).Decode(&result); err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func DailyRequest(reqDef dailyRequest) (*DailyResponse, error) {
+	req, err := http.NewRequest(reqDef.Method, reqDef.URL, bytes.NewReader(reqDef.Body))
+	if err != nil {
+		return nil, err
+	}
+
+	for k, v := range reqDef.Headers {
+		req.Header.Set(k, v)
+	}
+
+	res, err := httpClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	var reader io.ReadCloser
+	switch res.Header.Get("Content-Encoding") {
+	case "gzip":
+		reader, err = gzip.NewReader(res.Body)
+		if err != nil {
+			return nil, err
+		}
+		defer reader.Close()
+	case "br":
+		reader = io.NopCloser(brotli.NewReader(res.Body))
+	default:
+		reader = res.Body
+	}
+
+	var result DailyResponse
 	if err := json.NewDecoder(reader).Decode(&result); err != nil {
 		return nil, err
 	}

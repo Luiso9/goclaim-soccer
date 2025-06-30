@@ -6,3 +6,10 @@ type apiRequest struct {
 	Headers map[string]string
 	Body    []byte
 }
+
+type dailyRequest struct {
+	Method  string
+	URL     string
+	Headers map[string]string
+	Body    []byte
+}

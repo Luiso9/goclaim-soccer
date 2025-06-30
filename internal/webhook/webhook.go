@@ -35,9 +35,36 @@ func Notify(result *api.ClaimResponse) {
 				Inline: false,
 			},
 			discordwebhook.Field{
-				Name:   "Bin",
+				Name:   "Sell Value",
 				Value:  fmt.Sprintf("%d", card.Bin),
 				Inline: false,
+			},
+		},
+	}
+	err := SendNotify(webhookUrl, embed)
+	if err != nil {
+		log.Println("Discord webhook send failed", err)
+	}
+}
+
+func NotifyDaily(dailyRespone *api.DailyResponse) {
+	embed := discordwebhook.Embed{
+		Title:     "Daily Login Success",
+		Color:     5763719,
+		Timestamp: time.Now(),
+		Thumbnail: discordwebhook.Thumbnail{
+			Url: "https://cdn.driannsa.my.id/megalon2d-PeakCinema-0.1.0.png.256x256_q95_crop.png",
+		},
+		Fields: []discordwebhook.Field{
+			{
+				Name:   "Streak",
+				Value:  fmt.Sprintf("%d", dailyRespone.Streak),
+				Inline: true,
+			},
+			{
+				Name:   "Pack Reward",
+				Value:  fmt.Sprintf("%t", dailyRespone.IsPackReward),
+				Inline: true,
 			},
 		},
 	}
