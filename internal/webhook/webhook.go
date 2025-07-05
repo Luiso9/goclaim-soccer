@@ -11,9 +11,9 @@ import (
 	discordwebhook "github.com/bensch777/discord-webhook-golang"
 )
 
-var webhookUrl = "https://discord.com/api/webhooks/1283840202313306144/Hvr5sbMa7TK_lvmIxdXY5QEhn37_ET1CQ5uU2s7e6Am0iWhLNnwdkix-HeMVlLpZ0ee7"
 
 func Notify(result *api.ClaimResponse) {
+	webhookUrl := os.Getenv("WEBHOOK_URL")
 	card := result.Card
 
 	embed := discordwebhook.Embed{
@@ -48,6 +48,7 @@ func Notify(result *api.ClaimResponse) {
 }
 
 func NotifyDaily(dailyRespone *api.DailyResponse) {
+	webhookUrl := os.Getenv("WEBHOOK_URL")
 	embed := discordwebhook.Embed{
 		Title:     "Daily Login Success",
 		Color:     5763719,
