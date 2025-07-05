@@ -1,8 +1,6 @@
 package main
 
 import (
-	"log"
-	
 	// "github.com/Luiso9/goclaim-soccer/internal/api"
 	// "github.com/Luiso9/goclaim-soccer/internal/webhook"
 	"github.com/Luiso9/goclaim-soccer/internal/scheduler"
