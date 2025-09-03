@@ -22,6 +22,7 @@ func run() {
 	// Hourly Claim
 	for _, req := range api.OptionRequest() {
 		result, err := api.SendRequest(req)
+		
 
 		// Skipping response from OPTIONS request.
 		if req.Method == "OPTIONS" {
