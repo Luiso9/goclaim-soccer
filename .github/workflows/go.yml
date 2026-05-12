@@ -1,0 +1,37 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: GoHourly
+
+on:
+  schedule:
+    # Runs at minute 0 of every hour
+    - cron: '0 * * * *'
+  workflow_dispatch: # Keeps the manual trigger button
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Go 1.24
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.x'
+
+      - name: Download Dependencies
+        run: go mod tidy
+
+      - name: Create Environment File
+        run: echo "AUTH_KEY=${{ secrets.AUTH_KEY }}" > .env
+
+      - name: Inject Webhook URL
+        run: sed -i 's|var webhookUrl = "ur webhook url"|var webhookUrl = "${{ secrets.DISCORD_WEBHOOK_URL }}"|g' internal/webhook/webhook.go
+
+      - name: Compile Application
+        run: go build -o goclaim-soccer
+
+      - name: Execute Application
+        run: ./goclaim-soccer
